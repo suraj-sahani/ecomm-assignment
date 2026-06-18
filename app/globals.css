@@ -1,110 +1,117 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-@import "shadcn/tailwind.css";
-
-@custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans-base);
-  --font-tight: var(--font-sans);
-  --font-display: var(--font-display);
-  --font-mono: var(--font-mono);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  
   --radius-sm: 0px;
   --radius-md: 0px;
   --radius-lg: 0px;
   --radius-xl: 0px;
   --radius-2xl: 0px;
   --radius-3xl: 0px;
-  --radius-4xl: 0px;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accent-foreground);
+  --color-secondary: var(--muted);
+  --color-secondary-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-border-hover: var(--border-hover);
+
+  --font-sans: "Inter Tight", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", ui-monospace, monospace;
+  --font-display: "Playfair Display", Georgia, serif;
+
+  --text-8xl: 8rem;
+  --text-9xl: 10rem;
+
+  --tracking-tighter: -0.06em;
+  --tracking-tight: -0.04em;
+  --tracking-normal: -0.01em;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+  --tracking-widest: 0.2em;
 }
 
 :root {
-  --background: #0A0A0A;
-  --foreground: #FAFAFA;
-  --card: #0F0F0F;
-  --card-foreground: #FAFAFA;
-  --popover: #0F0F0F;
-  --popover-foreground: #FAFAFA;
-  --primary: #FF3D00;
-  --primary-foreground: #0A0A0A;
-  --secondary: #FAFAFA;
-  --secondary-foreground: #0A0A0A;
-  --muted: #1A1A1A;
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --muted: #1a1a1a;
   --muted-foreground: #737373;
-  --accent: #FF3D00;
-  --accent-foreground: #0A0A0A;
-  --destructive: #EF4444;
+  --accent: #ff3d00;
+  --accent-foreground: #0a0a0a;
   --border: #262626;
-  --input: #1A1A1A;
-  --ring: #FF3D00;
+  --border-hover: #404040;
+  --input: #1a1a1a;
+  --card: #0f0f0f;
+  --card-foreground: #fafafa;
+  --popover: #0f0f0f;
+  --popover-foreground: #fafafa;
+  --destructive: #ff3d00;
+  --ring: #ff3d00;
   --radius: 0px;
 }
 
-/* Base resets & styles */
 @layer base {
   * {
-    @apply border-border outline-none transition-colors duration-150;
-    border-radius: 0px !important;
+    border-color: var(--color-border);
   }
-  
-  /* Focus visible accessibility state */
-  *:focus-visible {
-    @apply ring-2 ring-accent ring-offset-2 ring-offset-background;
+
+  html {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    -webkit-font-smoothing: antialiased;
   }
 
   body {
-    @apply bg-background text-foreground min-h-full flex flex-col font-sans antialiased selection:bg-[var(--accent)] selection:text-[var(--accent-foreground)];
-  }
-  
-  button:not(:disabled), [role="button"]:not(:disabled) {
-    cursor: pointer;
-  }
-  
-  html {
-    @apply h-full;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    letter-spacing: -0.01em;
+    position: relative;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-tight tracking-tight font-semibold;
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0.015;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    font-weight: 600;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-foreground);
   }
 }
 
-/* Fractal noise background */
-.noise-bg {
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
-}
-
-/* Custom transitions and scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #0A0A0A;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #262626;
-  border-radius: 0px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #FF3D00;
+@utility label-mono {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.65rem;
+  color: var(--muted-foreground);
 }

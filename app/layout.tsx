@@ -1,7 +1,13 @@
-import type { Metadata } from "next";
-import { Inter, Inter_Tight, Playfair_Display, JetBrains_Mono } from "next/font/google";
-import "./globals.css";
+import Providers from "@/components/providers";
 import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
+import {
+  Inter,
+  Inter_Tight,
+  JetBrains_Mono,
+  Playfair_Display,
+} from "next/font/google";
+import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,7 +35,8 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "POSTER / Editorial Product Gallery & Catalogue",
-  description: "A bold, type-driven editorial product listing and details exhibition matching luxury catalog guidelines.",
+  description:
+    "A bold, type-driven editorial product listing and details exhibition matching luxury catalog guidelines.",
 };
 
 export default function RootLayout({
@@ -45,11 +52,12 @@ export default function RootLayout({
         inter.variable,
         interTight.variable,
         playfairDisplay.variable,
-        jetbrainsMono.variable
+        jetbrainsMono.variable,
       )}
     >
-      <body className="min-h-full flex flex-col noise-bg">{children}</body>
+      <body className="min-h-full flex flex-col noise-bg">
+        <Providers>{children}</Providers>
+      </body>
     </html>
   );
 }
-
