@@ -8,6 +8,8 @@ import {
   Playfair_Display,
 } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -55,8 +57,12 @@ export default function RootLayout({
         jetbrainsMono.variable,
       )}
     >
-      <body className="min-h-full flex flex-col noise-bg">
-        <Providers>{children}</Providers>
+      <body className="h-screen w-screen flex flex-col noise-bg">
+        <Providers>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </Providers>
       </body>
     </html>
   );
