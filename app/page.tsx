@@ -1,11 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import { Suspense } from "react";
 import ProductFilters from "@/components/product/filters";
 import ProductGrid from "@/components/product/product-grid";
 
-function ListingPage() {
+export default function Page() {
   return (
     <>
       {/* Hero Poster */}
@@ -39,20 +37,5 @@ function ListingPage() {
         </section>
       </div>
     </>
-  );
-}
-
-export default function Page() {
-  return (
-    <Suspense
-      fallback={
-        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 py-40 flex-1 flex flex-col items-center justify-center font-mono text-xs text-muted-foreground uppercase tracking-widest gap-4">
-          <div className="animate-pulse">LOADING CATALOGUE INDEX...</div>
-          <div className="h-[2px] w-24 bg-accent animate-pulse" />
-        </div>
-      }
-    >
-      <ListingPage />
-    </Suspense>
   );
 }
