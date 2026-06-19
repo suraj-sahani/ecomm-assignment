@@ -18,7 +18,7 @@ export const getProducts = async (category: string): Promise<Product[]> => {
     const validator = ProductListSchema.parse(data);
     return validator.products;
   } catch (err) {
-    console.log(err);
+    console.error(err);
     throw new Error(
       err instanceof Error ? err.message : "Failed to fetch products",
     );
@@ -37,6 +37,7 @@ export const getProductCategories = async (): Promise<Category[]> => {
 
     return validator;
   } catch (err) {
+    console.error(err);
     throw new Error(
       err instanceof Error ? err.message : "Failed to fetch products",
     );
@@ -57,6 +58,7 @@ export const getProductDetails = async (id: string): Promise<Product> => {
 
     return validator;
   } catch (err) {
+    console.error(err);
     throw new Error(
       err instanceof Error ? err.message : "Failed to fetch product details",
     );

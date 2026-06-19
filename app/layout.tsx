@@ -36,7 +36,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "POSTER / Editorial Product Gallery & Catalogue",
+  title: "Catalogue",
   description:
     "A bold, type-driven editorial product listing and details exhibition matching luxury catalog guidelines.",
 };

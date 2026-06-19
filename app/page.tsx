@@ -2,6 +2,7 @@
 
 import ProductFilters from "@/components/product/filters";
 import ProductGrid from "@/components/product/product-grid";
+import { Suspense } from "react";
 
 export default function Page() {
   return (
@@ -27,14 +28,18 @@ export default function Page() {
       {/* Main Layout Grid */}
       <div className="mx-auto max-w-7xl px-6 md:px-12 py-12 md:py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
         {/* Sidebar - Filters */}
-        <div className="lg:col-span-3">
-          <ProductFilters />
-        </div>
+        <Suspense>
+          <div className="lg:col-span-3">
+            <ProductFilters />
+          </div>
+        </Suspense>
 
         {/* Product Cards Grid */}
-        <section className="lg:col-span-9">
-          <ProductGrid />
-        </section>
+        <Suspense>
+          <section className="lg:col-span-9">
+            <ProductGrid />
+          </section>
+        </Suspense>
       </div>
     </>
   );

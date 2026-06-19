@@ -1,5 +1,4 @@
 import ProductGallery from "@/components/product/product-gallery";
-import { Button } from "@/components/ui/button";
 import { getProductDetails } from "@/lib/services/product.service";
 import Link from "next/link";
 
@@ -14,26 +13,6 @@ export default async function ProductPage({ params, searchParams }: PageProps) {
   const returnTo = search.returnTo || "";
 
   const product = await getProductDetails(id);
-
-  if (!product) {
-    return (
-      <div className="w-full max-w-xl mx-auto px-6 py-40 flex-1 flex flex-col items-center justify-center text-center">
-        <div className="font-mono text-xs text-accent uppercase tracking-widest mb-4">
-          ERROR 404 // PRODUCT INDEX NOT FOUND
-        </div>
-        <h1 className="text-4xl md:text-5xl font-black uppercase tracking-tighter leading-none mb-6">
-          ITEM NOT RECORDED
-        </h1>
-        <p className="font-mono text-xs text-muted-foreground uppercase leading-relaxed mb-8">
-          The requested product ID does not correspond to an active item in our
-          dummyjson registry. It may have been discontinued.
-        </p>
-        <Link href={`/${returnTo}`}>
-          <Button variant="outline">RETURN TO CATALOGUE</Button>
-        </Link>
-      </div>
-    );
-  }
 
   return (
     <>
