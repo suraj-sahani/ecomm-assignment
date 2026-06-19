@@ -1,4 +1,4 @@
-# Editorial Bold: Product Directory Application
+# Catalogue: Product Directory Application
 
 A high-performance, visually striking visual directory and catalog application built using **Next.js 16**, **React 19**, and **Tailwind CSS v4**. This application implements a cohesive "Bold Typography / High-Contrast Editorial" design system, showcasing products fetched dynamically from `dummyjson.com`.
 
