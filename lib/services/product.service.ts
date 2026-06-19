@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import {
   CategoryListSchema,
   ProductListSchema,
@@ -44,13 +45,18 @@ export const getProductCategories = async (): Promise<Category[]> => {
   }
 };
 
-export const getProductDetails = async (id: string): Promise<Product> => {
+export const getProductDetails = async (
+  id: string,
+): Promise<Product | null> => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`,
     );
 
-    if (!res.ok) throw new Error("Failed to fetch product details");
+    if (!res.ok) {
+      if (res.status === 404) return null;
+      else throw new Error("Failed to fetch product details");
+    }
 
     const data = await res.json();
 

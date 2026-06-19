@@ -39,14 +39,22 @@ export default function ProductFilters() {
   } = useProductFilters();
 
   // Fetch categories list
-  const { data: categories, isFetching: isFetchingCategories } = useQuery({
+  const {
+    data: categories,
+    isFetching: isFetchingCategories,
+    error: categoryError,
+  } = useQuery({
     queryKey: ["categories"],
     queryFn: getProductCategories,
     staleTime: 1000 * 60 * 5,
   });
 
   // Fetch products under the selected category to build dynamic list of brands
-  const { data: products, isFetching } = useQuery({
+  const {
+    data: products,
+    isFetching: isFetchingProducts,
+    error: productError,
+  } = useQuery({
     queryKey: ["products", selectedCategory],
     queryFn: () => getProducts(selectedCategory),
     staleTime: 1000 * 60 * 5,
@@ -59,7 +67,15 @@ export default function ProductFilters() {
     return Array.from(set).sort();
   }, [products]);
 
-  if (isFetchingCategories || isFetching) return <FilterSkeleton />;
+  if (isFetchingCategories || isFetchingProducts) return <FilterSkeleton />;
+  if (categoryError || productError)
+    return (
+      <p className="label-mono text-[var(--accent)]">
+        {categoryError?.message ||
+          productError?.message ||
+          "Failed to load filters"}
+      </p>
+    );
 
   return (
     <aside className="lg:col-span-3 space-y-10">

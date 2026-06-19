@@ -1,6 +1,7 @@
 import ProductGallery from "@/components/product/product-gallery";
 import { getProductDetails } from "@/lib/services/product.service";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -13,6 +14,8 @@ export default async function ProductPage({ params, searchParams }: PageProps) {
   const returnTo = search.returnTo || "";
 
   const product = await getProductDetails(id);
+
+  if (!product) notFound();
 
   return (
     <>
