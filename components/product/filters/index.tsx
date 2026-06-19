@@ -10,6 +10,7 @@ import { useMemo } from "react";
 import RadioFilter from "./radio-filter";
 import PriceFilter from "./price-filter";
 import CheckboxFilter from "./checkbox-filter";
+import FilterSkeleton from "./filter-skeleton";
 
 function FilterBlock({
   title,
@@ -45,7 +46,7 @@ export default function ProductFilters() {
   });
 
   // Fetch products under the selected category to build dynamic list of brands
-  const { data: products } = useQuery({
+  const { data: products, isFetching } = useQuery({
     queryKey: ["products", selectedCategory],
     queryFn: () => getProducts(selectedCategory),
     staleTime: 1000 * 60 * 5,
@@ -57,6 +58,8 @@ export default function ProductFilters() {
     (products || []).forEach((p) => p.brand && set.add(p.brand));
     return Array.from(set).sort();
   }, [products]);
+
+  if (isFetchingCategories || isFetching) return <FilterSkeleton />;
 
   return (
     <aside className="lg:col-span-3 space-y-10">
