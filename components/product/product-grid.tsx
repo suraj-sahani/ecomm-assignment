@@ -49,11 +49,11 @@ export default function ProductGrid() {
   // Page calculations
   const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
   const currentPage = Math.min(page, totalPages);
-  
+
   const pagedProducts = useMemo(() => {
     return filtered.slice(
       (currentPage - 1) * PAGE_SIZE,
-      currentPage * PAGE_SIZE
+      currentPage * PAGE_SIZE,
     );
   }, [filtered, currentPage]);
 
@@ -78,7 +78,9 @@ export default function ProductGrid() {
           Error / Network Failure
         </span>
         <p className="text-sm leading-relaxed text-muted-foreground">
-          {error instanceof Error ? error.message : "Failed to load products index."}
+          {error instanceof Error
+            ? error.message
+            : "Failed to load products index."}
         </p>
       </div>
     );

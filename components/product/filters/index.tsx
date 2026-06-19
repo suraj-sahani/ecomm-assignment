@@ -1,7 +1,10 @@
 "use client";
 
 import { useQuery } from "@tanstack/react-query";
-import { getProductCategories, getProducts } from "@/lib/services/product.service";
+import {
+  getProductCategories,
+  getProducts,
+} from "@/lib/services/product.service";
 import { useProductFilters } from "@/lib/hooks/use-product-filters";
 import { useMemo } from "react";
 import RadioFilter from "./radio-filter";
@@ -93,7 +96,9 @@ export default function ProductFilters() {
             </li>
           ))}
           {isFetchingCategories && (
-            <li className="label-mono animate-pulse text-muted-foreground">Loading…</li>
+            <li className="label-mono animate-pulse text-muted-foreground">
+              Loading…
+            </li>
           )}
         </ul>
       </FilterBlock>
@@ -117,7 +122,9 @@ export default function ProductFilters() {
       {/* Brands Selection */}
       <FilterBlock title={`Brand · ${brands.length}`}>
         {brands.length === 0 ? (
-          <p className="label-mono text-muted-foreground italic">No brands in this view.</p>
+          <p className="label-mono text-muted-foreground italic">
+            No brands in this view.
+          </p>
         ) : (
           <ul className="space-y-2 max-h-72 overflow-auto pr-2">
             {brands.map((b) => (
