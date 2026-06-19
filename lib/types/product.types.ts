@@ -1,15 +1,6 @@
-export interface Product {
-    id: number
-    title: string
-    description: string
-    category: string
-    price: number
-    rating: number
-    brand: string
-    thumbnail: string
-}
+import z from "zod";
+import { CategorySchema, ProductSchema } from "../schema/product.schema";
 
-export interface Category {
-    slug: string
-    name: string
-}
+export interface Product extends z.infer<typeof ProductSchema> {}
+
+export interface Category extends z.infer<typeof CategorySchema> {}
